@@ -1,1 +1,50 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Mon Gardien — Veille & Santé</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="theme-color" content="#1e4a3d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mon Gardien">
+<style>
+  :root{
+    --green-900:#1e4a3d;
+    --green-700:#2d6a52;
+    --green-600:#3a7d5f;
+    --cream:#f7f5ef;
+    --white:#ffffff;
+    --ink:#1f2b26;
+    --ink-soft:#5b6a63;
+    --amber:#e8a33d;
+    --amber-soft:#fbeed9;
+    --red:#c0392b;
+    --blue:#2f6fa8;
+    --blue-soft:#e7f1fa;
+    --border:#e4e0d4;
+    --radius-lg:22px;
+    --radius-md:14px;
+    --shadow:0 8px 24px rgba(30,74,61,0.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    display:flex;
+    justify-content:center;
+  }
+  .device{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    background:var(--cream);
+    display:flex;
+    flex-direction:column;
+    position:relative
