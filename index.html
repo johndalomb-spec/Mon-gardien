@@ -8,53 +8,54 @@
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="theme-color" content="#1e4a3d">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Mon Gardien">
 <style>
-  :root{
-    --green-900:#1e4a3d;
-    --green-700:#2d6a52;
-    --green-600:#3a7d5f;
-    --cream:#f7f5ef;
-    --white:#ffffff;
-    --ink:#1f2b26;
-    --ink-soft:#5b6a63;
-    --amber:#e8a33d;
-    --amber-soft:#fbeed9;
-    --red:#c0392b;
-    --blue:#2f6fa8;
-    --blue-soft:#e7f1fa;
-    --border:#e4e0d4;
-    --radius-lg:22px;
-    --radius-md:14px;
-    --shadow:0 8px 24px rgba(30,74,61,0.10);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--cream);
-    color:var(--ink);
-    display:flex;
-    justify-content:center;
-  }
-  .device{
-    width:100%;
-    max-width:430px;
-    min-height:100vh;
-    background:var(--cream);
-    display:flex;
-    flex-direction:column;
-    position:relative;
-  }
-
-  /* Header */
-  header.app-header{
-    background:linear-gradient(135deg,var(--green-900),var(--green-700));
-    color:#fff;
-    padding:18px 20px 16px;
-    display:flex;
+:root{--green-900:#1e4a3d;--green-700:#2d6a52;--green-600:#3a7d5f;--cream:#f7f5ef;--ink:#1f2b26;--ink-soft:#5b6a63;--amber:#e8a33d;--amber-soft:#fbeed9;--red:#c0392b;--blue:#2f6fa8;--border:#e4e0d4;--radius-lg:22px;--radius-md:14px;--shadow:0 8px 24px rgba(30,74,61,.10)}
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--cream);color:var(--ink);display:flex;justify-content:center}.device{width:100%;max-width:430px;min-height:100vh;background:var(--cream);display:flex;flex-direction:column}
+header.app-header{background:linear-gradient(135deg,var(--green-900),var(--green-700));color:#fff;padding:18px 20px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{display:flex;align-items:center;gap:12px}.brand .mark{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:22px}.brand h1{font-size:19px;margin:0}.brand p{margin:0;font-size:11.5px;opacity:.78}.mode-switch{display:flex;background:rgba(255,255,255,.14);border-radius:999px;padding:3px}.mode-switch button{border:0;background:transparent;color:#fff;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:600}.mode-switch button.active{background:#fff;color:var(--green-900)}
+.tabbar{display:flex;background:#fff;border-bottom:1px solid var(--border)}.tabbar button{flex:1;border:0;background:transparent;padding:12px 4px 10px;font-size:13px;font-weight:600;color:var(--ink-soft);display:flex;flex-direction:column;align-items:center;gap:4px;border-bottom:3px solid transparent}.tabbar button .ic{font-size:20px}.tabbar button.active{color:var(--green-700);border-bottom-color:var(--green-700)}
+main{flex:1;padding:18px 18px 100px}.status-card,.proche-card{background:#fff;border-radius:var(--radius-lg);padding:24px 20px;box-shadow:var(--shadow);margin-bottom:16px}.status-card{text-align:center}.status-card .time{font-size:15px;color:var(--ink-soft);font-weight:600;margin-bottom:14px}.heart-ring{width:150px;height:150px;border-radius:50%;border:5px solid var(--green-600);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;background:#eef6f0}.heart-ring.alert{border-color:var(--amber)}.heart-ring .heart{font-size:52px}.status-card h2{font-size:23px;margin:0 0 8px;color:var(--green-900)}.status-card p{margin:0 0 18px;color:var(--ink-soft);font-size:14.5px;line-height:1.5}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:16px;border-radius:var(--radius-md);border:0;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:12px}.btn-primary{background:var(--green-700);color:#fff}.btn-sos{background:var(--red);color:#fff}.btn-outline{background:#fff;border:1.5px solid var(--green-700);color:var(--green-700)}
+.next-checkin{background:#fff;border-radius:var(--radius-md);padding:16px;text-align:center;border:1px solid var(--border)}.next-checkin .label{font-size:12px;color:var(--ink-soft);font-weight:700}.next-checkin .value{font-size:22px;font-weight:700;color:var(--green-900);margin-top:6px}.section-title{font-size:13px;font-weight:700;color:var(--ink-soft);margin:22px 0 12px}
+.med-item,.contact-card{background:#fff;border-radius:var(--radius-md);padding:16px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border)}.med-item .left{display:flex;align-items:center;gap:12px}.med-item .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}.dot.green{background:#2d9e5a}.dot.amber{background:var(--amber)}.dot.blue{background:var(--blue)}.med-item .name{font-weight:600;font-size:15px}.med-item .time,.contact-card .rel{font-size:12.5px;color:var(--ink-soft)}.pill{padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:700}.pill.ok{background:#e2f5e8;color:#1f7a44}.pill.pending{background:#fdeaea;color:var(--red)}.pill.wait{background:var(--amber-soft);color:#8a5f18}
+.contact-card{justify-content:flex-start;gap:14px}.avatar{width:48px;height:48px;border-radius:50%;background:var(--green-600);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}.contact-card .info{flex:1}.contact-card .name{font-weight:700;font-size:15px}.call-btn{margin-left:auto;width:42px;height:42px;border-radius:50%;background:var(--green-700);color:#fff;border:0;font-size:17px}
+.alert-banner{background:var(--amber);color:#3a2a08;border-radius:var(--radius-md);padding:16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.alert-banner .left{display:flex;align-items:center;gap:12px}.alert-banner .title{font-weight:700;font-size:15px}.alert-banner .sub{font-size:12.5px}.alert-banner button{background:#3a2a08;color:#fff;border:0;padding:9px 14px;border-radius:10px;font-weight:700}
+.proche-card.inactive{border:2px solid var(--amber)}.proche-head{display:flex;align-items:center;gap:14px;margin-bottom:16px}.proche-head .avatar{width:56px;height:56px;font-size:24px}.proche-head .name{font-size:19px;font-weight:700}.proche-head .loc{font-size:12.5px;color:var(--ink-soft)}.status-tag{margin-left:auto;padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:700}.status-tag.active{background:#e2f5e8;color:#1f7a44}.status-tag.inactive{background:var(--amber-soft);color:#8a5f18}.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}.stat-box{background:var(--cream);border-radius:12px;padding:12px 8px;text-align:center}.stat-box .num{font-size:19px;font-weight:800;color:var(--green-900)}.stat-box .lbl{font-size:10.5px;color:var(--ink-soft);font-weight:700;margin-top:2px}.action-row{display:flex;gap:10px}.action-row .btn{margin-bottom:0;padding:14px;font-size:14px}
+.settings-card{background:#fff;border-radius:var(--radius-lg);padding:6px 18px;box-shadow:var(--shadow)}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}.setting-row:last-child{border-bottom:0}.setting-row .left{display:flex;align-items:center;gap:12px}.setting-row .name{font-weight:700;font-size:14.5px}.setting-row .sub{font-size:12px;color:var(--ink-soft)}.setting-row select{border:1px solid var(--border);background:var(--cream);border-radius:10px;padding:9px 10px;font-size:13.5px;font-weight:600;color:var(--ink)}.fab-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green-900);color:#fff;padding:13px 22px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;max-width:90%;text-align:center}.fab-toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="device">
+<header class="app-header"><div class="brand"><div class="mark">🛡️</div><div><h1>Mon Gardien</h1><p>VEILLE &amp; SANTÉ</p></div></div><div class="mode-switch"><button id="btn-mode-senior" class="active" onclick="setMode('senior')">🧓 Senior</button><button id="btn-mode-famille" onclick="setMode('famille')">👪 Famille</button></div></header>
+<nav class="tabbar" id="senior-tabbar"><button class="active" onclick="setTab('accueil')" data-tab="accueil"><span class="ic">🏠</span>Accueil</button><button onclick="setTab('sante')" data-tab="sante"><span class="ic">💊</span>Ma Santé</button><button onclick="setTab('contacts')" data-tab="contacts"><span class="ic">📞</span>Contacts</button></nav>
+<nav class="tabbar" id="famille-tabbar" style="display:none"><button class="active" onclick="setFamTab('dashboard')" data-famtab="dashboard"><span class="ic">🏠</span>Suivi</button><button onclick="setFamTab('reglages')" data-famtab="reglages"><span class="ic">⚙️</span>Réglages</button></nav>
+<main id="main-content"></main><div class="fab-toast" id="toast"></div>
+</div>
+<script>
+const STORAGE_KEY='mongardien_last_activity',THRESHOLD_KEY='mongardien_alert_threshold_hours';
+let mode='senior',tab='accueil',famTab='dashboard';
+let senior={name:'René Dupont',city:'Toulon, Var',lastContact:'08:14',inactivityHours:0,status:'active',finalContact:'SAMU (15)',meds:[{name:'Médicaments matin (8h)',time:'8h',state:'ok'},{name:'Médicaments midi (12h30)',time:'12h30',state:'pending'},{name:'Médicaments soir (20h)',time:'20h',state:'wait'},{name:'Glycémie matin',time:'',state:'ok'}],contacts:[{name:'Sophie (fille)',rel:'Fille · Marseille',phone:'0612345678'},{name:'Luc (fils)',rel:'Fils · Nice',phone:'0698765432'},{name:'SAMU',rel:'Urgence',phone:'15'}]};
+function esc(v){return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#039;")}
+function recordActivity(){localStorage.setItem(STORAGE_KEY,Date.now())}
+function getHoursSinceActivity(){const t=Number(localStorage.getItem(STORAGE_KEY)||0);return t?(Date.now()-t)/3600000:0}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2500)}
+function setMode(m){mode=m;document.getElementById('btn-mode-senior').classList.toggle('active',m==='senior');document.getElementById('btn-mode-famille').classList.toggle('active',m==='famille');document.getElementById('senior-tabbar').style.display=m==='senior'?'flex':'none';document.getElementById('famille-tabbar').style.display=m==='famille'?'flex':'none';render()}
+function setTab(t){tab=t;document.querySelectorAll('#senior-tabbar button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));render()}
+function setFamTab(t){famTab=t;document.querySelectorAll('#famille-tabbar button').forEach(b=>b.classList.toggle('active',b.dataset.famtab===t));render()}
+function seniorAccueil(){const i=senior.status==='inactive';return `<section class="status-card"><div class="time">Aujourd’hui · ${new Date().toLocaleDateString('fr-FR')}</div><div class="heart-ring ${i?'alert':''}"><div class="heart">♥</div></div><h2>${i?'Vérification nécessaire':'Tout va bien'}</h2><p>${i?`Aucune activité détectée depuis environ <strong>${Math.round(senior.inactivityHours)} h</strong>.`:'Votre activité récente a bien été détectée.'}</p><button class="btn btn-primary" onclick="confirmPresence()">✓ Je vais bien</button>${i?`<button class="btn btn-sos" onclick="callEmergency()">🚨 Appeler le ${esc(senior.finalContact)}</button>`:''}</section><section class="next-checkin"><div class="label">PROCHAIN RAPPEL</div><div class="value">Aujourd’hui à 20h00</div></section><div class="section-title">Ma journée</div><section class="med-item"><div class="left"><div class="dot green"></div><div><div class="name">Activité quotidienne</div><div class="time">Dernier contact : ${esc(senior.lastContact)}</div></div></div><span class="pill ok">OK</span></section><section class="med-item"><div class="left"><div class="dot amber"></div><div><div class="name">Prochain médicament</div><div class="time">Médicament midi · 12h30</div></div></div><span class="pill pending">À prendre</span></section>`}
+function healthView(){return `<div class="section-title">Mes médicaments</div>${senior.meds.map(m=>`<section class="med-item"><div class="left"><div class="dot ${m.state==='ok'?'green':m.state==='pending'?'amber':'blue'}"></div><div><div class="name">${esc(m.name)}</div><div class="time">${esc(m.time||'Selon prescription')}</div></div></div><span class="pill ${esc(m.state)}">${m.state==='ok'?'Pris':m.state==='pending'?'À prendre':'Prévu'}</span></section>`).join('')}<div class="section-title">Suivi santé</div><section class="med-item"><div class="left"><div class="dot blue"></div><div><div class="name">Prochain contrôle</div><div class="time">Demain · 09h00</div></div></div><span class="pill wait">Prévu</span></section>`}
+function contactsView(){return `<div class="section-title">Mes contacts</div>${senior.contacts.map(c=>`<section class="contact-card"><div class="avatar">${c.name==='SAMU'?'🚑':'👤'}</div><div class="info"><div class="name">${esc(c.name)}</div><div class="rel">${esc(c.rel)}</div></div><button class="call-btn" onclick="window.location.href='tel:${esc(c.phone)}'">☎</button></section>`).join('')}`}
+function familyDashboard(){const i=senior.status==='inactive';return `<div class="alert-banner"><div class="left"><div style="font-size:24px">⚠️</div><div><div class="title">${i?'Attention requise':'Tout va bien'}</div><div class="sub">${i?`Aucune activité depuis environ ${Math.round(senior.inactivityHours)} h.`:`Dernière activité détectée à ${esc(senior.lastContact)}.`}</div></div></div><button onclick="checkNow()">Vérifier</button></div><section class="proche-card ${i?'inactive':''}"><div class="proche-head"><div class="avatar">👴</div><div><div class="name">${esc(senior.name)}</div><div class="loc">📍 ${esc(senior.city)}</div></div><span class="status-tag ${i?'inactive':'active'}">${i?'À vérifier':'Actif'}</span></div><div class="stat-row"><div class="stat-box"><div class="num">${Math.round(senior.inactivityHours)}h</div><div class="lbl">Inactivité</div></div><div class="stat-box"><div class="num">${senior.meds.filter(m=>m.state==='pending').length}</div><div class="lbl">Rappel</div></div><div class="stat-box"><div class="num">${esc(senior.lastContact)}</div><div class="lbl">Dernier contact</div></div></div><div class="action-row"><button class="btn" onclick="sendReminder()">📩 Envoyer un rappel</button><button class="btn btn-outline" onclick="callSenior()">☎ Appeler</button></div></section>`}
+function familySettings(){return `<div class="section-title">Réglages de veille</div><section class="settings-card"><div class="setting-row"><div class="left"><span>⏱️</span><div><div class="name">Délai d’alerte</div><div class="sub">Avant de signaler une inactivité</div></div></div><select onchange="setThreshold(this.value)"><option>4 h</option><option selected>8 h</option><option>12 h</option><option>24 h</option></select></div><div class="setting-row"><div class="left"><span>📞</span><div><div class="name">Contact final</div><div class="sub">En cas d’urgence</div></div></div><strong>${esc(senior.finalContact)}</strong></div></section>`}
+function setThreshold(v){localStorage.setItem(THRESHOLD_KEY,parseInt(v));showToast('✓ Délai enregistré')}
+function confirmPresence(){recordActivity();senior.status='active';senior.inactivityHours=0;senior.lastContact=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});showToast('✓ Présence confirmée');render()}
+function callEmergency(){window.location.href='tel:15'}
+function checkNow(){confirmPresence()}
+function sendReminder(){showToast('📩 Rappel envoyé à René')}
+function callSenior(){const c=senior.contacts.find(x=>x.name.includes('Sophie'));if(c)window.location.href='tel:'+c.phone}
+function checkInactivity(){const h=getHoursSinceActivity();senior.inactivityHours=Math.round(h*10)/10;if(h>=Number(localStorage.getItem(THRESHOLD_KEY)||8))senior.status='inactive';render()}
+function render(){const m=document.getElementById('main-content');if(mode==='senior')m.innerHTML=tab==='accueil'?seniorAccueil():tab==='sante'?healthView():contactsView();else m.innerHTML=famTab==='dashboard'?familyDashboard():familySettings()}
+recordActivity();render();setInterval(checkInactivity,60000)
+      display:flex;
     align-items:center;
     justify-content:space-between;
     gap:12px;
@@ -367,320 +368,244 @@ let senior = {
 /* ---------- Rendering ---------- */
 function setMode(m){
   mode = m;
-  document.getElementById('btn-mode-senior').classList.toggle('active', m==='senior')
-  const family = {
-  name:'Sophie',
-  relation:'Fille de René',
-  city:'Marseille',
-  notifications:true
-};
+  document.getElementById('btn-mode-senior').classList.toggle('active', m==='senior');
+  document.getElementById('btn-mode-famille').classList.toggle('active', m==='famille');
+  document.getElementById('senior-tabbar').style.display = m==='senior' ? 'flex':'none';
+  document.getElementById('famille-tabbar').style.display = m==='famille' ? 'flex':'none';
+  render();
+}
+function setTab(t){ tab = t; render(); }
+function setFamTab(t){ famTab = t; render(); }
 
-function esc(value){
-  return String(value)
-    .replaceAll('&','&amp;')
-    .replaceAll('<','&lt;')
-    .replaceAll('>','&gt;')
-    .replaceAll('"','&quot;')
-    .replaceAll("'","&#039;");
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2200);
 }
 
-function showToast(message){
-  const toast = document.getElementById('toast');
-  toast.textContent = message;
-  toast.classList.add('show');
-
-  clearTimeout(window.toastTimer);
-  window.toastTimer = setTimeout(()=>{
-    toast.classList.remove('show');
-  },2500);
+function confirmMed(id){
+  const m = senior.meds.find(x=>x.id===id);
+  if(m){ m.state='ok'; showToast('Prise confirmée ✓'); render(); }
 }
 
-function setMode(newMode){
-  mode = newMode;
-
-  document.getElementById('btn-mode-senior')
-    .classList.toggle('active', mode === 'senior');
-
-  document.getElementById('btn-mode-famille')
-    .classList.toggle('active', mode === 'famille');
-
-  document.getElementById('senior-tabbar').style.display =
-    mode === 'senior' ? 'flex' : 'none';
-
-  document.getElementById('famille-tabbar').style.display =
-    mode === 'famille' ? 'flex' : 'none';
-
+function markOk(){
+  senior.status='active';
+  senior.inactivityHours=0;
+  senior.lastContact = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  showToast('Merci ' + senior.greetName + ', c\'est noté ✓');
   render();
 }
 
-function setTab(newTab){
-  tab = newTab;
-
-  document.querySelectorAll('#senior-tabbar button').forEach(btn=>{
-    btn.classList.toggle(
-      'active',
-      btn.dataset.tab === tab
-    );
-  });
-
-  render();
+function sosCall(){
+  showToast('📞 Appel du contact d\'urgence en cours…');
 }
 
-function setFamTab(newTab){
-  famTab = newTab;
-
-  document.querySelectorAll('#famille-tabbar button').forEach(btn=>{
-    btn.classList.toggle(
-      'active',
-      btn.dataset.famtab === famTab
-    );
-  });
-
-  render();
+function nowStr(){
+  return new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}).replace(':','H');
 }
 
-function seniorAccueil(){
-  const inactive = senior.status === 'inactive';
-
+/* ---------- Senior views ---------- */
+function renderSeniorAccueil(){
   return `
-    <section class="status-card">
-      <div class="time">Aujourd’hui · ${new Date().toLocaleDateString('fr-FR')}</div>
-
-      <div class="heart-ring ${inactive ? 'alert' : ''}">
-        <div class="heart">♥</div>
-      </div>
-
-      <h2>
-        ${inactive ? 'Vérification nécessaire' : 'Tout va bien'}
-      </h2>
-
-      <p>
-        ${
-          inactive
-          ? `Aucune activité détectée depuis environ
-             <strong>${Math.round(senior.inactivityHours)} h</strong>.`
-          : 'Votre activité récente a bien été détectée.'
-        }
-      </p>
-
-      <button class="btn btn-primary" onclick="confirmPresence()">
-        ✓ Je vais bien
-      </button>
-
-      ${
-        inactive
-        ? `
-          <button class="btn btn-sos" onclick="callEmergency()">
-            🚨 Appeler le ${esc(senior.finalContact)}
-          </button>
-        `
-        : ''
-      }
-    </section>
-
-    <section class="next-checkin">
-      <div class="label">PROCHAIN RAPPEL</div>
-      <div class="value">Aujourd’hui à 20h00</div>
-    </section>
-
-    <div class="section-title">Ma journée</div>
-
-    <section class="med-item">
-      <div class="left">
-        <div class="dot green"></div>
-        <div>
-          <div class="name">Activité quotidienne</div>
-          <div class="time">Dernier contact : ${esc(senior.lastContact)}</div>
-        </div>
-      </div>
-      <span class="pill ok">OK</span>
-    </section>
-
-    <section class="med-item">
-      <div class="left">
-        <div class="dot amber"></div>
-        <div>
-          <div class="name">Prochain médicament</div>
-          <div class="time">Médicament midi · 12h30</div>
-        </div>
-      </div>
-      <span class="pill pending">À prendre</span>
-    </section>
-  `;
-}
-
-function confirmPresence(){
-  recordActivity();
-
-  senior.status = 'active';
-  senior.inactivityHours = 0;
-  senior.lastContact = new Date().toLocaleTimeString(
-    'fr-FR',
-    {hour:'2-digit',minute:'2-digit'}
-  );
-
-  showToast('✓ Présence confirmée');
-  render();
-}
-
-function callEmergency(){
-  window.location.href = 'tel:15';
-}
-
-function healthView(){
-  return `
-    <div class="section-title">Mes médicaments</div>
-
-    ${senior.meds.map(med=>`
-      <section class="med-item">
-        <div class="left">
-          <div class="dot ${esc(med.state === 'ok' ? 'green' :
-                                med.state === 'pending' ? 'amber' : 'blue')}"></div>
-          <div>
-            <div class="name">${esc(med.name)}</div>
-            <div class="time">${esc(med.time || 'Selon prescription')}</div>
-          </div>
-        </div>
-
-        <span class="pill ${esc(med.state)}">
-          ${
-            med.state === 'ok' ? 'Pris' :
-            med.state === 'pending' ? 'À prendre' :
-            'Prévu'
-          }
-        </span>
-      </section>
-    `).join('')}
-
-    <div class="section-title">Suivi santé</div>
-
-    <section class="med-item">
-      <div class="left">
-        <div class="dot blue"></div>
-        <div>
-          <div class="name">Prochain contrôle</div>
-          <div class="time">Demain · 09h00</div>
-        </div>
-      </div>
-      <span class="pill wait">Prévu</span>
-    </section>
-  `;
-}
-
-function contactsView(){
-  return `
-    <div class="section-title">Mes contacts</div>
-
-    ${senior.contacts.map(contact=>`
-      <section class="contact-card">
-        <div class="avatar">
-          ${contact.name === 'SAMU' ? '🚑' : '👤'}
-        </div>
-
-        <div class="contact-card-info">
-          <div class="name">${esc(contact.name)}</div>
-          <div class="rel">${esc(contact.rel)}</div>
-        </div>
-
-        <button
-          class="call-btn"
-          onclick="window.location.href='tel:${esc(contact.phone)}'"
-        >
-          ☎
-        </button>
-      </section>
-    `).join('')}
-  `;
-}
-
-function familyDashboard(){
-  const inactive = senior.status === 'inactive';
-
-  return `
-    <div class="alert-banner">
-      <div class="left">
-        <div class="ic">⚠️</div>
-        <div>
-          <div class="title">
-            ${inactive ? 'Attention requise' : 'Tout va bien'}
-          </div>
-          <div class="sub">
-            ${
-              inactive
-              ? `Aucune activité depuis environ ${Math.round(senior.inactivityHours)} h.`
-              : `Dernière activité détectée à ${esc(senior.lastContact)}.`
-            }
-          </div>
-        </div>
-      </div>
-
-      <button onclick="checkNow()">Vérifier</button>
+    <div class="status-card">
+      <div class="time">${nowStr()}</div>
+      <div class="heart-ring"><div class="heart">${senior.status==='active'?'💚':'🧡'}</div></div>
+      <h2>Bon appétit ${senior.greetName} ! 🍽️</h2>
+      <p>N'oubliez pas vos médicaments du midi 💊</p>
     </div>
-
-    <section class="proche-card ${inactive ? 'inactive' : ''}">
-      <div class="proche-head">
-        <div class="avatar">👴</div>
-
-        <div>
-          <div class="name">${esc(senior.name)}</div>
-          <div class="loc">📍 ${esc(senior.city)}</div>
-        </div>
-
-        <span class="status-tag ${inactive ? 'inactive' : 'active'}">
-          ${inactive ? 'À vérifier' : 'Actif'}
-        </span>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-box">
-          <div class="num">${Math.round(senior.inactivityHours)}h</div>
-          <div class="lbl">Inactivité</div>
-        </div>
-
-        <div class="stat-box">
-          <div class="num warn">${senior.meds.filter(m=>m.state==='pending').length}</div>
-          <div class="lbl">Rappel</div>
-        </div>
-
-        <div class="stat-box">
-          <div class="num">${esc(senior.lastContact)}</div>
-          <div class="lbl">Dernier contact</div>
-        </div>
-      </div>
-
-      <div class="action-row">
-        <button class="btn" onclick="sendReminder()">
-          📩 Envoyer un rappel
-        </button>
-
-        <button class="btn btn-outline" onclick="callSenior()">
-          ☎ Appeler
-        </button>
-      </div>
-    </section>
+    <button class="btn btn-primary" onclick="markOk()">✅ Je vais bien</button>
+    <button class="btn btn-sos" onclick="sosCall()">🚨 APPEL D'URGENCE</button>
+    <div class="next-checkin">
+      <div class="label">PROCHAIN CHECK-IN DANS</div>
+      <div class="value">${senior.status==='active' ? '4h 00min' : 'en attente'}</div>
+    </div>
   `;
 }
 
-function checkNow(){
-  recordActivity();
-  senior.status = 'active';
-  senior.inactivityHours = 0;
-  senior.lastContact = new Date().toLocaleTimeString(
-    'fr-FR',
-    {hour:'2-digit',minute:'2-digit'}
-  );
-
-  showToast('✓ Vérification effectuée');
-  render();
+function medPill(state){
+  if(state==='ok') return '<span class="pill ok">✅ Pris</span>';
+  if(state==='pending') return '<span class="pill pending">❌ Non confirmé</span>';
+  return '<span class="pill wait">⏳ À venir</span>';
+}
+function medDot(state){
+  if(state==='ok') return 'green';
+  if(state==='pending') return 'red';
+  return 'amber';
 }
 
-function sendReminder(){
-  showToast('📩 Rappel envoyé à René');
+function renderSeniorSante(){
+  return `
+    <div class="section-title">SUIVI MÉDICAMENTS AUJOURD'HUI</div>
+    ${senior.meds.map(m=>`
+      <div class="med-item">
+        <div class="left">
+          <div class="dot ${medDot(m.state)}"></div>
+          <div><div class="name">${m.name}</div></div>
+        </div>
+        ${m.state==='pending'
+          ? `<button class="btn btn-secondary" style="width:auto;margin:0;padding:9px 14px;font-size:13px;" onclick="confirmMed(${m.id})">Confirmer</button>`
+          : medPill(m.state)}
+      </div>
+    `).join('')}
+  `;
 }
 
-function callSenior(){
-  const contact = senior.contacts.find(c=>c.name.includes('Sophie'));
-  if(contact){
-    window.location.href = `tel:${contact.phone}`;
-  } 
+function renderSeniorContacts(){
+  return `
+    <div class="section-title">MES CONTACTS</div>
+    ${senior.contacts.map(c=>`
+      <div class="contact-card">
+        <div class="avatar">${c.name[0]}</div>
+        <div class="info">
+          <div class="name">${c.name}</div>
+          <div class="rel">${c.rel}</div>
+        </div>
+        <button class="call-btn" onclick="showToast('📞 Appel de ${c.name}…')">📞</button>
+      </div>
+    `).join('')}
+  `;
+}
+
+/* ---------- Famille views ---------- */
+function renderFamDashboard(){
+  const inactive = senior.status==='inactive';
+  return `
+    ${inactive ? `
+      <div class="alert-banner">
+        <div class="left">
+          <div class="ic">⚠️</div>
+          <div>
+            <div class="title">Inactivité — ${senior.greetName}</div>
+            <div class="sub">Aucune activité depuis ${senior.inactivityHours}h. Dernier contact : ${senior.lastContact}</div>
+          </div>
+        </div>
+        <button onclick="showToast('Vérification envoyée à ${senior.greetName}')">Vérifier</button>
+      </div>
+    ` : ''}
+    ${senior.meds.some(m=>m.state==='pending') ? `
+      <div class="info-banner">
+        <div>
+          <div class="title">Médicaments non confirmés</div>
+          <div class="sub">${senior.greetName} n'a pas confirmé sa prise du midi</div>
+        </div>
+        <button onclick="ackMeds()">OK</button>
+      </div>
+    ` : ''}
+
+    <div class="section-title">MES PROCHES</div>
+    <div class="proche-card ${inactive ? 'inactive':''}">
+      <div class="proche-head">
+        <div class="avatar">${senior.greetName[0]}</div>
+        <div>
+          <div class="name">${senior.name}</div>
+          <div class="loc">📍 ${senior.city} · ${senior.age} ans</div>
+        </div>
+        <div class="status-tag ${inactive?'inactive':'active'}">${inactive? '⚠️ Inactif':'✅ Active'}</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num ${inactive?'warn':''}">${senior.inactivityHours}h</div><div class="lbl">INACTIVITÉ</div></div>
+        <div class="stat-box"><div class="num">${senior.lastContact}</div><div class="lbl">DERNIER CONTACT</div></div>
+        <div class="stat-box"><div class="num">${senior.meds.filter(m=>m.state==='ok').length}/${senior.meds.length}</div><div class="lbl">MÉDICAMENTS</div></div>
+      </div>
+      <div class="action-row">
+        <button class="btn btn-primary" style="flex:1;" onclick="showToast('📞 Appel de ${senior.greetName}…')">📞 Appeler ${senior.greetName}</button>
+        <button class="btn btn-outline" style="flex:1;" onclick="showToast('💬 Ouverture de la messagerie…')">💬 Message</button>
+      </div>
+    </div>
+  `;
+}
+function ackMeds(){
+  showToast('Suivi médicaments pris en compte');
+}
+
+function renderFamReglages(){
+  return `
+    <div class="section-title">PARAMÈTRES</div>
+    <div class="settings-card">
+      <div class="setting-row">
+              <select onchange="senior.alertDelay=this.value; showToast('Délai mis à jour')">
+          <option ${senior.alertDelay==='4 heures'?'selected':''}>4 heures</option>
+          <option ${senior.alertDelay==='8 heures'?'selected':''}>8 heures</option>
+          <option ${senior.alertDelay==='12 heures'?'selected':''}>12 heures</option>
+          <option ${senior.alertDelay==='24 heures'?'selected':''}>24 heures</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div class="left"><div class="ic">🌙</div><div><div class="name">Plage Mode Nuit</div><div class="sub">Aucune alerte pendant le sommeil</div></div></div>
+        <select onchange="showToast('Plage nuit mise à jour')">
+          <option selected>22h → 7h</option>
+          <option>23h → 8h</option>
+          <option>21h → 6h</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div class="left"><div class="ic">🚨</div><div><div class="name">Alerte médicaments</div><div class="sub">Si non confirmé après</div></div></div>
+        <select onchange="showToast('Délai médicaments
+        <div class="left"><div class="ic">⏱️</div><div><div class="name">Délai avant al;
+              <div class="setting-row">
+        <div class="left"><div class="ic">🌙</div><div><div class="name">Plage Mode Nuit</div><div class="sub">Aucune alerte pendant le sommeil</div></div></div>
+        <select onchange="showToast('Plage nuit mise à jour')">
+          <option selected>22h → 7h</option>
+          <option>23h → 8h</option>
+          <option>21h → 6h</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div class="left"><div class="ic">🚨</div><div><div class="name">Alerte médicaments</div><div class="sub">Si non confirmé après</div></div></div>
+        <select onchange="showToast('Délai médicaments mis à jour')">
+          <option selected>30 min</option>
+          <option>1 heure</option>
+          <option>2 heures</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <div class="left"><div class="ic">🚑</div><div><div class="name">Contact d'urgence final</div><div class="sub">Si famille ne répond pas</div></div></div>
+        <select onchange="showToast('Contact final mis à jour')">
+          <option selected>SAMU (15)</option>
+          <option>Voisin de confiance</optio
+          <option>Médecin traitant</option>
+                </div>
+    </div>
+    <div class="empty-note">D'autres réglages (contacts, tarification) arrivent bientôt.</div>
+  `;
+}
+
+/* ---------- Main render dispatcher ---------- */
+function render(){
+  const el = document.getElementById('main-content');
+  if(mode==='senior'){
+    document.querySelectorAll('#senior-tabbar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+    if(tab==='accueil') el.innerHTML = renderSeniorAccueil();
+    else if(tab==='sante') el.innerHTML = renderSeniorSante();
+    e
+    else el.innerHTML = renderSeniorContacts();
+  } else {
+  document.querySelectorAll('#famille-tabbar button').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+
+  if(tab==='accueil') el.innerHTML = renderFamilleAccueil();
+  else if(tab==='sante') el.innerHTML = renderFamilleSante();
+  else el.innerHTML = renderFamilleContacts();
   }
+}
+
+render();
+
+document.querySelectorAll('#senior-tabbar button,#famille-tabbar button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    tab=btn.dataset.tab;
+    render();
+  });
+});
+
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    mode=btn.dataset.mode;
+    tab='accueil';
+    render();
+  });
+});
+
+</script>
+</body>
+</html>
