@@ -367,159 +367,320 @@ let senior = {
 /* ---------- Rendering ---------- */
 function setMode(m){
   mode = m;
-  document.getElementById('btn-mode-senior').classList.toggle('active', m==='senior');
-  document.getElementById('btn-mode-famille').classList.toggle('active', m==='famille');
-  document.getElementById('senior-tabbar').style.display = m==='senior' ? 'flex':'none';
-  document.getElementById('famille-tabbar').style.display = m==='famille' ? 'flex':'none';
+  document.getElementById('btn-mode-senior').classList.toggle('active', m==='senior')
+  const family = {
+  name:'Sophie',
+  relation:'Fille de René',
+  city:'Marseille',
+  notifications:true
+};
+
+function esc(value){
+  return String(value)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'","&#039;");
+}
+
+function showToast(message){
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(()=>{
+    toast.classList.remove('show');
+  },2500);
+}
+
+function setMode(newMode){
+  mode = newMode;
+
+  document.getElementById('btn-mode-senior')
+    .classList.toggle('active', mode === 'senior');
+
+  document.getElementById('btn-mode-famille')
+    .classList.toggle('active', mode === 'famille');
+
+  document.getElementById('senior-tabbar').style.display =
+    mode === 'senior' ? 'flex' : 'none';
+
+  document.getElementById('famille-tabbar').style.display =
+    mode === 'famille' ? 'flex' : 'none';
+
   render();
 }
-function setTab(t){ tab = t; render(); }
-function setFamTab(t){ famTab = t; render(); }
 
-function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2200);
-}
+function setTab(newTab){
+  tab = newTab;
 
-function confirmMed(id){
-  const m = senior.meds.find(x=>x.id===id);
-  if(m){ m.state='ok'; showToast('Prise confirmée ✓'); render(); }
-}
+  document.querySelectorAll('#senior-tabbar button').forEach(btn=>{
+    btn.classList.toggle(
+      'active',
+      btn.dataset.tab === tab
+    );
+  });
 
-function markOk(){
-  senior.status='active';
-  senior.inactivityHours=0;
-  senior.lastContact = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-  showToast('Merci ' + senior.greetName + ', c\'est noté ✓');
   render();
 }
 
-function sosCall(){
-  showToast('📞 Appel du contact d\'urgence en cours…');
+function setFamTab(newTab){
+  famTab = newTab;
+
+  document.querySelectorAll('#famille-tabbar button').forEach(btn=>{
+    btn.classList.toggle(
+      'active',
+      btn.dataset.famtab === famTab
+    );
+  });
+
+  render();
 }
 
-function nowStr(){
-  return new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}).replace(':','H');
-}
+function seniorAccueil(){
+  const inactive = senior.status === 'inactive';
 
-/* ---------- Senior views ---------- */
-function renderSeniorAccueil(){
   return `
-    <div class="status-card">
-      <div class="time">${nowStr()}</div>
-      <div class="heart-ring"><div class="heart">${senior.status==='active'?'💚':'🧡'}</div></div>
-      <h2>Bon appétit ${senior.greetName} ! 🍽️</h2>
-      <p>N'oubliez pas vos médicaments du midi 💊</p>
-    </div>
-    <button class="btn btn-primary" onclick="markOk()">✅ Je vais bien</button>
-    <button class="btn btn-sos" onclick="sosCall()">🚨 APPEL D'URGENCE</button>
-    <div class="next-checkin">
-      <div class="label">PROCHAIN CHECK-IN DANS</div>
-      <div class="value">${senior.status==='active' ? '4h 00min' : 'en attente'}</div>
-    </div>
-  `;
-}
+    <section class="status-card">
+      <div class="time">Aujourd’hui · ${new Date().toLocaleDateString('fr-FR')}</div>
 
-function medPill(state){
-  if(state==='ok') return '<span class="pill ok">✅ Pris</span>';
-  if(state==='pending') return '<span class="pill pending">❌ Non confirmé</span>';
-  return '<span class="pill wait">⏳ À venir</span>';
-}
-function medDot(state){
-  if(state==='ok') return 'green';
-  if(state==='pending') return 'red';
-  return 'amber';
-}
-
-function renderSeniorSante(){
-  return `
-    <div class="section-title">SUIVI MÉDICAMENTS AUJOURD'HUI</div>
-    ${senior.meds.map(m=>`
-      <div class="med-item">
-        <div class="left">
-          <div class="dot ${medDot(m.state)}"></div>
-          <div><div class="name">${m.name}</div></div>
-        </div>
-        ${m.state==='pending'
-          ? `<button class="btn btn-secondary" style="width:auto;margin:0;padding:9px 14px;font-size:13px;" onclick="confirmMed(${m.id})">Confirmer</button>`
-          : medPill(m.state)}
+      <div class="heart-ring ${inactive ? 'alert' : ''}">
+        <div class="heart">♥</div>
       </div>
-    `).join('')}
-  `;
-}
 
-function renderSeniorContacts(){
-  return `
-    <div class="section-title">MES CONTACTS</div>
-    ${senior.contacts.map(c=>`
-      <div class="contact-card">
-        <div class="avatar">${c.name[0]}</div>
-        <div class="info">
-          <div class="name">${c.name}</div>
-          <div class="rel">${c.rel}</div>
+      <h2>
+        ${inactive ? 'Vérification nécessaire' : 'Tout va bien'}
+      </h2>
+
+      <p>
+        ${
+          inactive
+          ? `Aucune activité détectée depuis environ
+             <strong>${Math.round(senior.inactivityHours)} h</strong>.`
+          : 'Votre activité récente a bien été détectée.'
+        }
+      </p>
+
+      <button class="btn btn-primary" onclick="confirmPresence()">
+        ✓ Je vais bien
+      </button>
+
+      ${
+        inactive
+        ? `
+          <button class="btn btn-sos" onclick="callEmergency()">
+            🚨 Appeler le ${esc(senior.finalContact)}
+          </button>
+        `
+        : ''
+      }
+    </section>
+
+    <section class="next-checkin">
+      <div class="label">PROCHAIN RAPPEL</div>
+      <div class="value">Aujourd’hui à 20h00</div>
+    </section>
+
+    <div class="section-title">Ma journée</div>
+
+    <section class="med-item">
+      <div class="left">
+        <div class="dot green"></div>
+        <div>
+          <div class="name">Activité quotidienne</div>
+          <div class="time">Dernier contact : ${esc(senior.lastContact)}</div>
         </div>
-        <button class="call-btn" onclick="showToast('📞 Appel de ${c.name}…')">📞</button>
       </div>
-    `).join('')}
+      <span class="pill ok">OK</span>
+    </section>
+
+    <section class="med-item">
+      <div class="left">
+        <div class="dot amber"></div>
+        <div>
+          <div class="name">Prochain médicament</div>
+          <div class="time">Médicament midi · 12h30</div>
+        </div>
+      </div>
+      <span class="pill pending">À prendre</span>
+    </section>
   `;
 }
 
-/* ---------- Famille views ---------- */
-function renderFamDashboard(){
-  const inactive = senior.status==='inactive';
+function confirmPresence(){
+  recordActivity();
+
+  senior.status = 'active';
+  senior.inactivityHours = 0;
+  senior.lastContact = new Date().toLocaleTimeString(
+    'fr-FR',
+    {hour:'2-digit',minute:'2-digit'}
+  );
+
+  showToast('✓ Présence confirmée');
+  render();
+}
+
+function callEmergency(){
+  window.location.href = 'tel:15';
+}
+
+function healthView(){
   return `
-    ${inactive ? `
-      <div class="alert-banner">
+    <div class="section-title">Mes médicaments</div>
+
+    ${senior.meds.map(med=>`
+      <section class="med-item">
         <div class="left">
-          <div class="ic">⚠️</div>
+          <div class="dot ${esc(med.state === 'ok' ? 'green' :
+                                med.state === 'pending' ? 'amber' : 'blue')}"></div>
           <div>
-            <div class="title">Inactivité — ${senior.greetName}</div>
-            <div class="sub">Aucune activité depuis ${senior.inactivityHours}h. Dernier contact : ${senior.lastContact}</div>
+            <div class="name">${esc(med.name)}</div>
+            <div class="time">${esc(med.time || 'Selon prescription')}</div>
           </div>
         </div>
-        <button onclick="showToast('Vérification envoyée à ${senior.greetName}')">Vérifier</button>
-      </div>
-    ` : ''}
-    ${senior.meds.some(m=>m.state==='pending') ? `
-      <div class="info-banner">
-        <div>
-          <div class="title">Médicaments non confirmés</div>
-          <div class="sub">${senior.greetName} n'a pas confirmé sa prise du midi</div>
-        </div>
-        <button onclick="ackMeds()">OK</button>
-      </div>
-    ` : ''}
 
-    <div class="section-title">MES PROCHES</div>
-    <div class="proche-card ${inactive ? 'inactive':''}">
-      <div class="proche-head">
-        <div class="avatar">${senior.greetName[0]}</div>
+        <span class="pill ${esc(med.state)}">
+          ${
+            med.state === 'ok' ? 'Pris' :
+            med.state === 'pending' ? 'À prendre' :
+            'Prévu'
+          }
+        </span>
+      </section>
+    `).join('')}
+
+    <div class="section-title">Suivi santé</div>
+
+    <section class="med-item">
+      <div class="left">
+        <div class="dot blue"></div>
         <div>
-          <div class="name">${senior.name}</div>
-          <div class="loc">📍 ${senior.city} · ${senior.age} ans</div>
+          <div class="name">Prochain contrôle</div>
+          <div class="time">Demain · 09h00</div>
         </div>
-        <div class="status-tag ${inactive?'inactive':'active'}">${inactive? '⚠️ Inactif':'✅ Active'}</div>
       </div>
-      <div class="stat-row">
-        <div class="stat-box"><div class="num ${inactive?'warn':''}">${senior.inactivityHours}h</div><div class="lbl">INACTIVITÉ</div></div>
-        <div class="stat-box"><div class="num">${senior.lastContact}</div><div class="lbl">DERNIER CONTACT</div></div>
-        <div class="stat-box"><div class="num">${senior.meds.filter(m=>m.state==='ok').length}/${senior.meds.length}</div><div class="lbl">MÉDICAMENTS</div></div>
-      </div>
-      <div class="action-row">
-        <button class="btn btn-primary" style="flex:1;" onclick="showToast('📞 Appel de ${senior.greetName}…')">📞 Appeler ${senior.greetName}</button>
-        <button class="btn btn-outline" style="flex:1;" onclick="showToast('💬 Ouverture de la messagerie…')">💬 Message</button>
-      </div>
-    </div>
+      <span class="pill wait">Prévu</span>
+    </section>
   `;
 }
-function ackMeds(){
-  showToast('Suivi médicaments pris en compte');
+
+function contactsView(){
+  return `
+    <div class="section-title">Mes contacts</div>
+
+    ${senior.contacts.map(contact=>`
+      <section class="contact-card">
+        <div class="avatar">
+          ${contact.name === 'SAMU' ? '🚑' : '👤'}
+        </div>
+
+        <div class="contact-card-info">
+          <div class="name">${esc(contact.name)}</div>
+          <div class="rel">${esc(contact.rel)}</div>
+        </div>
+
+        <button
+          class="call-btn"
+          onclick="window.location.href='tel:${esc(contact.phone)}'"
+        >
+          ☎
+        </button>
+      </section>
+    `).join('')}
+  `;
 }
 
-function renderFamReglages(){
+function familyDashboard(){
+  const inactive = senior.status === 'inactive';
+
   return `
-    <div class="section-title">PARAMÈTRES</div>
-    <div class="settings-card">
-      <div class="
+    <div class="alert-banner">
+      <div class="left">
+        <div class="ic">⚠️</div>
+        <div>
+          <div class="title">
+            ${inactive ? 'Attention requise' : 'Tout va bien'}
+          </div>
+          <div class="sub">
+            ${
+              inactive
+              ? `Aucune activité depuis environ ${Math.round(senior.inactivityHours)} h.`
+              : `Dernière activité détectée à ${esc(senior.lastContact)}.`
+            }
+          </div>
+        </div>
+      </div>
+
+      <button onclick="checkNow()">Vérifier</button>
+    </div>
+
+    <section class="proche-card ${inactive ? 'inactive' : ''}">
+      <div class="proche-head">
+        <div class="avatar">👴</div>
+
+        <div>
+          <div class="name">${esc(senior.name)}</div>
+          <div class="loc">📍 ${esc(senior.city)}</div>
+        </div>
+
+        <span class="status-tag ${inactive ? 'inactive' : 'active'}">
+          ${inactive ? 'À vérifier' : 'Actif'}
+        </span>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="num">${Math.round(senior.inactivityHours)}h</div>
+          <div class="lbl">Inactivité</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="num warn">${senior.meds.filter(m=>m.state==='pending').length}</div>
+          <div class="lbl">Rappel</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="num">${esc(senior.lastContact)}</div>
+          <div class="lbl">Dernier contact</div>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn" onclick="sendReminder()">
+          📩 Envoyer un rappel
+        </button>
+
+        <button class="btn btn-outline" onclick="callSenior()">
+          ☎ Appeler
+        </button>
+      </div>
+    </section>
+  `;
+}
+
+function checkNow(){
+  recordActivity();
+  senior.status = 'active';
+  senior.inactivityHours = 0;
+  senior.lastContact = new Date().toLocaleTimeString(
+    'fr-FR',
+    {hour:'2-digit',minute:'2-digit'}
+  );
+
+  showToast('✓ Vérification effectuée');
+  render();
+}
+
+function sendReminder(){
+  showToast('📩 Rappel envoyé à René');
+}
+
+function callSenior(){
+  const contact = senior.contacts.find(c=>c.name.includes('Sophie'));
+  if(contact){
+    window.location.href = `tel:${contact.phone}`;
+  } 
+  }
